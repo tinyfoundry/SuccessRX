@@ -3,1109 +3,591 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SuccessRX | CSM Certification</title>
+    <title>SuccessRX | The Prescription for Customer Success</title>
     <style>
+        /* --- RESET & VARIABLES --- */
         :root {
-            --primary: #0891b2; /* Cyan/Teal */
-            --primary-dark: #155e75;
-            --primary-light: #ecfeff;
-            --accent: #0ea5e9; /* Sky Blue */
-            --bg-body: #f0f9ff;
-            --bg-card: #ffffff;
-            --text-main: #0f172a;
-            --text-muted: #64748b;
-            --success: #10b981;
-            --warning: #f59e0b;
+            --primary: #0284c7; /* Clinical Blue */
+            --primary-dark: #0369a1;
+            --accent: #e11d48; /* Vital Red */
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --white: #ffffff;
             --border: #e2e8f0;
-            --shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.05);
-            --radius: 16px;
+            --font-main: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
         
         body {
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
-            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
-            color: var(--text-main);
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
+            font-family: var(--font-main);
+            color: var(--dark);
+            background-color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+
+        /* --- UTILITIES --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            text-align: center;
+            border: none;
+        }
+        .btn-primary {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+        .btn-primary:hover { background-color: var(--primary-dark); }
+        .btn-accent {
+            background-color: var(--accent);
+            color: var(--white);
+        }
+        .btn-accent:hover { background-color: #be123c; }
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+        .btn-outline:hover { background-color: var(--primary); color: var(--white); }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+        .section-title p {
+            color: var(--gray);
+            font-size: 1.1rem;
         }
 
         /* --- HEADER --- */
         header {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-            padding: 1rem 2rem;
+            background: var(--white);
             border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 15px 0;
+        }
+        nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            z-index: 10;
         }
-
         .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
+            font-size: 1.5rem;
             font-weight: 800;
-            font-size: 1.4rem;
-            color: var(--primary-dark);
-            letter-spacing: -0.5px;
-        }
-        
-        .logo svg { width: 32px; height: 32px; color: var(--primary); }
-
-        .progress-widget {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-        
-        .progress-text {
-            font-size: 0.85rem;
-            font-weight: 700;
-            color: var(--primary-dark);
-            text-transform: uppercase;
-        }
-
-        .progress-bar {
-            width: 150px;
-            height: 8px;
-            background: #cbd5e1;
-            border-radius: 10px;
-            overflow: hidden;
-        }
-        
-        .progress-fill {
-            height: 100%;
-            background: var(--primary);
-            width: 0%;
-            transition: width 0.5s ease;
-        }
-
-        /* --- MAIN LAYOUT --- */
-        main {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem;
-            overflow-y: auto;
-            position: relative;
-        }
-
-        /* --- CARD CONTAINER --- */
-        .course-card {
-            background: var(--bg-card);
-            width: 100%;
-            max-width: 1000px;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            border: 1px solid var(--border);
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-            animation: slideUp 0.4s ease-out;
-            min-height: 500px;
-        }
-
-        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-
-        /* --- BREADCRUMBS --- */
-        .breadcrumbs {
-            padding: 1.5rem 2rem 0.5rem;
-            font-size: 0.85rem;
-            color: var(--text-muted);
+            color: var(--primary);
             display: flex;
             align-items: center;
             gap: 8px;
         }
-        .breadcrumb-item { color: var(--primary); font-weight: 600; }
-        .separator { color: #cbd5e1; }
-
-        /* --- CONTENT AREA --- */
-        .content-area {
-            padding: 1rem 2rem 3rem;
-            flex: 1;
-            overflow-y: auto;
+        .logo span { color: var(--dark); }
+        .nav-links {
+            display: flex;
+            gap: 30px;
         }
-
-        h1 { font-size: 1.8rem; color: var(--text-main); margin-bottom: 0.5rem; letter-spacing: -0.5px; }
-        .step-meta { 
-            display: inline-flex; align-items: center; gap: 8px; 
-            background: var(--primary-light); color: var(--primary-dark);
-            padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
-            margin-bottom: 1.5rem;
+        .nav-links a {
+            font-weight: 500;
+            color: var(--gray);
         }
-
-        /* --- CARDS & BOXES --- */
-        .stage-card { margin-bottom: 2rem; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
-        .stage-header { background: #f1f5f9; padding: 0.8rem 1.2rem; font-weight: 700; color: var(--primary-dark); display: flex; justify-content: space-between; align-items: center; }
-        .stage-body { padding: 1.5rem; }
+        .nav-links a:hover { color: var(--primary); }
         
-        .sub-section { margin-bottom: 1.5rem; border-bottom: 1px dashed var(--border); padding-bottom: 1.5rem; }
-        .sub-section:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        /* Mobile Menu */
+        .mobile-toggle { display: none; font-size: 1.5rem; cursor: pointer; }
 
-        .stage-label { font-size: 0.8rem; text-transform: uppercase; font-weight: 700; color: var(--text-muted); margin-bottom: 0.5rem; display: block; }
-        .stage-content { color: #334155; line-height: 1.7; }
-        
-        .highlight-box { background: #fff7ed; padding: 1rem; border-left: 4px solid var(--warning); border-radius: 4px; margin: 0.5rem 0; font-style: italic; color: #9a3412; }
-        .case-study-box { background: #f0fdf4; padding: 1rem; border-left: 4px solid var(--success); border-radius: 4px; margin: 0.5rem 0; color: #14532d; }
-        .tip-box { background: #e0f2fe; padding: 1rem; border-left: 4px solid var(--accent); border-radius: 4px; margin: 0.5rem 0; color: #0c4a6e; }
-        .email-template {
-            background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 8px; font-family: monospace; font-size: 0.9rem; margin-top: 0.5rem; border-left: 4px solid var(--accent);
-            white-space: pre-wrap;
-        }
-
-        /* --- TECH STACK GRID --- */
-        .tech-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 1rem; }
-        .tech-card { border: 1px solid var(--border); border-radius: 8px; padding: 1.5rem; background: #fff; transition: 0.2s; }
-        .tech-card:hover { transform: translateY(-3px); box-shadow: 0 10px 15px rgba(0,0,0,0.1); }
-        .tech-icon { font-size: 2rem; margin-bottom: 0.5rem; display: block; }
-        .tech-name { font-weight: 700; font-size: 1.1rem; color: var(--primary-dark); margin-bottom: 0.5rem; }
-        .tech-desc { font-size: 0.9rem; color: var(--text-muted); line-height: 1.5; }
-
-        /* --- IS/DOES/MEANS (USED SPARINGLY) --- */
-        .idm-container { display: grid; gap: 1rem; margin: 2rem 0; }
-        .idm-card {
-            border: 1px solid var(--border); border-radius: 12px; overflow: hidden;
-            background: #fff; box-shadow: 0 2px 4px rgba(0,0,0,0.02);
-        }
-        .idm-header {
-            background: #f8fafc; padding: 0.75rem 1rem; border-bottom: 1px solid var(--border);
-            font-weight: 700; font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase;
-            display: flex; align-items: center; gap: 12px;
-        }
-        .idm-body { padding: 1rem; line-height: 1.7; color: #334155; font-size: 0.95rem; }
-        
-        .idm-label {
-            background: var(--primary); color: white; 
-            padding: 6px 16px; 
-            border-radius: 50px; 
-            font-size: 0.9rem; 
-            font-weight: 800;
-            flex-shrink: 0;
+        /* --- HERO --- */
+        .hero {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            padding: 80px 0;
             text-align: center;
-            min-width: 50px; 
+        }
+        .hero h1 {
+            font-size: 3.5rem;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+        .hero h1 span { color: var(--primary); }
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        /* --- CURRICULUM --- */
+        .curriculum {
+            padding: 80px 0;
+        }
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+        }
+        .card:hover { transform: translateY(-5px); }
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            background: #e0f2fe;
+            color: var(--primary);
             display: flex;
             align-items: center;
             justify-content: center;
-            white-space: nowrap;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        .card h3 {
+            margin-bottom: 10px;
+            font-size: 1.25rem;
+        }
+        .card p {
+            color: var(--gray);
+            font-size: 0.95rem;
         }
 
-        /* --- VIDEO --- */
-        .video-wrapper {
-            position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;
-            border-radius: 12px; background: #000; margin: 1.5rem 0;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1); border: 1px solid var(--border);
+        /* --- EVENTS --- */
+        .events {
+            background: var(--dark);
+            color: var(--white);
+            padding: 80px 0;
         }
-        .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+        .events .section-title p { color: #94a3b8; }
+        .events .section-title h2 { color: var(--white); }
+        .event-card {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 25px;
+            border-radius: 8px;
+        }
+        .event-date {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--primary); /* Cyan accent */
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: block;
+        }
+        .event-card h3 { margin-bottom: 10px; }
+        .event-card p { color: #cbd5e1; margin-bottom: 20px; font-size: 0.9rem; }
 
-        /* --- FOOTER NAV --- */
-        .card-footer {
-            padding: 1.5rem 2rem;
-            background: #f8fafc;
-            border-top: 1px solid var(--border);
+        /* --- TESTIMONIALS --- */
+        .testimonials {
+            padding: 80px 0;
+            background: var(--light);
+        }
+        .testimonial-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 12px;
+            border-left: 4px solid var(--primary);
+        }
+        .quote {
+            font-style: italic;
+            color: var(--dark);
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+        .author {
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            gap: 15px;
         }
+        .author img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #ddd;
+        }
+        .author-info h4 { font-size: 1rem; margin-bottom: 2px; }
+        .author-info span { font-size: 0.85rem; color: var(--gray); }
 
-        .btn {
-            padding: 0.8rem 1.5rem; border-radius: 8px; font-weight: 600; font-size: 0.9rem;
-            cursor: pointer; transition: all 0.2s; border: none; display: flex; align-items: center; gap: 8px;
+        /* --- PRICING / INTAKE --- */
+        .pricing {
+            padding: 80px 0;
+            text-align: center;
         }
-        .btn-primary { background: var(--primary); color: white; box-shadow: 0 4px 6px rgba(8, 145, 178, 0.2); }
-        .btn-primary:hover { background: var(--primary-dark); transform: translateY(-1px); }
-        .btn-primary:disabled { background: #cbd5e1; cursor: not-allowed; transform: none; box-shadow: none; }
+        .pricing-card {
+            background: var(--white);
+            max-width: 600px;
+            margin: 0 auto;
+            border: 2px solid var(--primary);
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 10px 25px rgba(2, 132, 199, 0.15);
+            position: relative;
+        }
+        .price-tag {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--dark);
+            margin: 20px 0;
+        }
+        .price-tag span { font-size: 1rem; color: var(--gray); font-weight: 400; }
         
-        .btn-secondary { background: white; border: 1px solid var(--border); color: var(--text-muted); }
-        .btn-secondary:hover { border-color: var(--primary); color: var(--primary); }
-
-        .action-check {
-            display: flex; align-items: center; gap: 10px; cursor: pointer;
-            background: white; border: 1px solid var(--border); padding: 0.8rem 1rem;
-            border-radius: 8px; margin-top: 1rem; transition: 0.2s;
+        .features-list {
+            text-align: left;
+            margin: 30px 0;
         }
-        .action-check:hover { border-color: var(--primary); }
-        .checkbox-box {
-            width: 20px; height: 20px; border: 2px solid #cbd5e1; border-radius: 4px;
-            display: flex; align-items: center; justify-content: center; color: white; font-size: 12px;
+        .features-list li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
-        .checked .checkbox-box { background: var(--success); border-color: var(--success); }
-        
-        /* --- CERTIFICATE --- */
-        .cert-wrapper { text-align: center; padding: 2rem; }
-        .cert-canvas { box-shadow: 0 10px 25px rgba(0,0,0,0.1); border: 1px solid #ddd; border-radius: 8px; max-width: 100%; }
-        .btn-download {
-            background: var(--primary-dark); color: white; padding: 1rem 2rem;
-            border-radius: 8px; border: none; font-weight: 700; margin-top: 1rem; cursor: pointer;
+        .check { color: var(--primary); font-weight: bold; }
+
+        /* Hidden Intake Form Styles */
+        .intake-container {
+            display: none; /* Hidden by default */
+            background: #f1f5f9;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            text-align: left;
+            border: 1px solid var(--border);
         }
+        .intake-container h4 { margin-bottom: 15px; color: var(--dark); }
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; margin-bottom: 5px; font-size: 0.9rem; font-weight: 600; }
+        .form-group input { width: 100%; padding: 10px; border: 1px solid var(--border); border-radius: 4px; }
 
-        /* --- UTILS --- */
-        h3 { color: var(--primary); margin: 1.5rem 0 0.5rem; font-size: 1.2rem; }
-        h4 { color: var(--primary-dark); margin: 1.2rem 0 0.5rem; font-size: 1.1rem; font-weight: 700; }
-        p { margin-bottom: 1rem; color: #334155; }
-        ul { padding-left: 1.5rem; margin-bottom: 1rem; }
-        li { margin-bottom: 0.5rem; }
-
-        .quiz-btn { width: 100%; text-align: left; padding: 1rem; margin-bottom: 0.5rem; background: white; border: 1px solid var(--border); border-radius: 8px; cursor: pointer; }
-        .quiz-btn:hover { background: #f0f9ff; border-color: var(--primary); }
-        .quiz-btn.correct { background: #dcfce7; border-color: var(--success); color: #14532d; font-weight: 700; }
-        .quiz-btn.wrong { background: #fee2e2; border-color: #fca5a5; color: #991b1b; }
-
-        .name-input-group { margin-bottom: 1.5rem; }
-        .name-input-group label { display: block; font-size: 0.85rem; font-weight: 700; color: var(--text-muted); margin-bottom: 0.5rem; }
-        .name-input { width: 100%; padding: 0.8rem; border: 1px solid var(--border); border-radius: 8px; font-size: 1rem; }
-
-        @media (max-width: 600px) {
-            .tech-grid { grid-template-columns: 1fr; }
+        /* --- CONTACT --- */
+        .contact {
+            padding: 80px 0;
+            background: #e2e8f0;
+        }
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--white);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
         }
 
+        /* --- FOOTER --- */
+        footer {
+            background: var(--dark);
+            color: #94a3b8;
+            padding: 40px 0;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .nav-links { display: none; }
+            .mobile-toggle { display: block; }
+            .grid-3 { grid-template-columns: 1fr; }
+            .hero-buttons { flex-direction: column; }
+        }
     </style>
 </head>
 <body>
 
+    <!-- NAV -->
     <header>
-        <div class="logo">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                <polyline points="22 4 12 14.01 9 11.01"></polyline>
-            </svg>
-            Success<span style="color:var(--primary)">RX</span>
-        </div>
-        <div class="progress-widget">
-            <span class="progress-text" id="progressText">0% Complete</span>
-            <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+        <div class="container">
+            <nav>
+                <div class="logo">Success<span>RX</span></div>
+                <ul class="nav-links">
+                    <li><a href="#curriculum">Curriculum</a></li>
+                    <li><a href="#events">Events</a></li>
+                    <li><a href="#testimonials">Reviews</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <div class="nav-links">
+                    <a href="#pricing" class="btn btn-primary">Enroll Now</a>
+                </div>
+                <div class="mobile-toggle" onclick="toggleMenu()">☰</div>
+            </nav>
         </div>
     </header>
 
-    <main>
-        <div class="course-card" id="courseCard">
-            <div class="breadcrumbs" id="breadcrumbs"></div>
-            <div class="content-area" id="contentArea">
-                <!-- Content Injected via JS -->
-            </div>
-            <div class="card-footer">
-                <button class="btn btn-secondary" id="prevBtn" onclick="nav(-1)">← Previous</button>
-                <button class="btn btn-primary" id="nextBtn" onclick="nav(1)">Next Step →</button>
+    <!-- HERO -->
+    <section class="hero">
+        <div class="container">
+            <h1>The Cure for <span style="color:var(--primary)">Churn.</span><br> The Prescription for Growth.</h1>
+            <p>Join the clinical approach to Customer Success. We train CS leaders and practitioners to diagnose problems, prescribe solutions, and ensure the health of their customer base.</p>
+            <div class="hero-buttons">
+                <!-- Leads to pricing area -->
+                <a href="#pricing" class="btn btn-primary">Start Foundations Training</a>
+                <!-- Leads to contact sales -->
+                <a href="#contact" class="btn btn-outline">Contact Sales</a>
             </div>
         </div>
-    </main>
+    </section>
 
+    <!-- CURRICULUM -->
+    <section id="curriculum" class="curriculum">
+        <div class="container">
+            <div class="section-title">
+                <h2>The CS Foundations Curriculum</h2>
+                <p>5 Critical Modules to treat your Customer Success career.</p>
+            </div>
+            <div class="grid-3">
+                <div class="card">
+                    <div class="card-icon">01</div>
+                    <h3>The Strategic Foundation</h3>
+                    <p>Transitioning from reactive support to proactive value creation. We establish the "baseline health" of your role.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">02</div>
+                    <h3>Lifecycle Value Stream</h3>
+                    <p>Mapping the patient journey from Implementation (Intake) to Renewal (Recovery). Build playbooks.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">03</div>
+                    <h3>Vital Signs & Data</h3>
+                    <p>Stop guessing. Learn to build Health Scorecards, identify leading indicators, and spot infection points.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">04</div>
+                    <h3>High-Impact EBRs</h3>
+                    <p>The architecture of the perfect Executive Business Review. Map stakeholders and communicate ROI.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">05</div>
+                    <h3>Growth Mechanics</h3>
+                    <p>Identify upsell opportunities organically. Turn customers into advocates using NPS strategies.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EVENTS -->
+    <section id="events" class="events">
+        <div class="container">
+            <div class="section-title">
+                <h2>Upcoming Events</h2>
+                <p>Live workshops and webinars to sharpen your skills.</p>
+            </div>
+            <div class="grid-3">
+                <!-- TODO: Link these to specific event pages or contact forms -->
+                <div class="event-card">
+                    <span class="event-date">Live Webinar • Oct 24</span>
+                    <h3>Diagnosing Churn Early</h3>
+                    <p>Learn the 3 leading indicators that predict cancellation.</p>
+                    <a href="#contact" class="btn btn-primary" style="padding: 8px 16px; font-size:0.9rem;">Register Free</a>
+                </div>
+                <div class="event-card">
+                    <span class="event-date">Workshop • Nov 12</span>
+                    <h3>EBR Bootcamp</h3>
+                    <p>Hands-on session building your Q4 Executive Business Review.</p>
+                    <a href="#contact" class="btn btn-primary" style="padding: 8px 16px; font-size:0.9rem;">Save Seat</a>
+                </div>
+                <div class="event-card">
+                    <span class="event-date">Summit • Dec 05</span>
+                    <h3>SuccessRX: The Summit</h3>
+                    <p>Annual gathering of top CS minds.</p>
+                    <a href="#contact" class="btn btn-primary" style="padding: 8px 16px; font-size:0.9rem;">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>Patient Success Stories</h2>
+                <p>Hear from professionals who have applied the SuccessRX method.</p>
+            </div>
+            <div class="grid-3">
+                <div class="testimonial-card">
+                    <p class="quote">"The 'Clinical' approach changed how I handle accounts. I treat data like vital signs now."</p>
+                    <div class="author">
+                        <img src="https://ui-avatars.com/api/?name=Sarah+J&background=random" alt="Sarah">
+                        <div class="author-info">
+                            <h4>Sarah Jenkins</h4>
+                            <span>Senior CSM, TechFlow</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="quote">"Finally, training that isn't fluff. The curriculum on EBRs alone was worth the price."</p>
+                    <div class="author">
+                        <img src="https://ui-avatars.com/api/?name=Mark+D&background=random" alt="Mark">
+                        <div class="author-info">
+                            <h4>Mark Davis</h4>
+                            <span>VP of Customer Success</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="quote">"SuccessRX helped my entire team get on the same page. We cut time-to-value in half."</p>
+                    <div class="author">
+                        <img src="https://ui-avatars.com/api/?name=Elena+R&background=random" alt="Elena">
+                        <div class="author-info">
+                            <h4>Elena Rodriguez</h4>
+                            <span>Head of CS, CloudScale</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRICING & INTAKE (BUILD FRAME) -->
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <div class="pricing-card">
+                <h3>Foundations Certification</h3>
+                <div class="price-tag">$497 <span>/ one-time</span></div>
+                <p style="color:var(--gray)">Complete lifetime access to the foundations curriculum and community.</p>
+                <ul class="features-list">
+                    <li><span class="check">✓</span> 5 Core Curriculum Modules</li>
+                    <li><span class="check">✓</span> Downloadable Templates & Playbooks</li>
+                    <li><span class="check">✓</span> Private Community Access</li>
+                    <li><span class="check">✓</span> SuccessRX Certification Badge</li>
+                    <li><span class="check">✓</span> 30-Day Money Back Guarantee</li>
+                </ul>
+
+                <!-- ACTION BUTTONS -->
+                <div style="display: flex; gap: 15px; justify-content: center; margin-top: 30px;">
+                    <!-- Option A: Consultation (Toggles Form) -->
+                    <button onclick="toggleIntake()" class="btn btn-outline">Request 15-Min Consult</button>
+                    
+                    <!-- Option B: Direct Pay (Stripe Placeholder) -->
+                    <!-- TODO: Replace 'https://buy.stripe.com/...' with your actual Stripe checkout link -->
+                    <a href="https://buy.stripe.com/PLACEHOLDER" class="btn btn-accent" target="_blank">Enroll & Pay Now</a>
+                </div>
+
+                <!-- HIDDEN INTAKE FORM -->
+                <div id="intake-form" class="intake-container">
+                    <h4>Schedule Consultation</h4>
+                    <p style="font-size: 0.9rem; margin-bottom: 15px; color: #666;">Enter your details to request a time slot.</p>
+                    <!-- TODO: Use Formspree or similar service to make this send emails to you -->
+                    <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input type="text" name="name" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" name="email" placeholder="you@company.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Best Time</label>
+                            <input type="text" name="time" placeholder="e.g., Tuesdays after 2PM">
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width:100%">Request Time</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contact Sales</h2>
+                <p>Looking to train a team of 5+? Let's talk.</p>
+            </div>
+            <div class="contact-form">
+                <!-- TODO: Create a new Formspree form for this section or use 'mailto' as fallback -->
+                <form action="https://formspree.io/f/YOUR_SALES_FORM_ID" method="POST">
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" name="name" placeholder="John Doe" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Work Email</label>
+                        <input type="email" name="email" placeholder="john@company.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Company Size</label>
+                        <select name="company_size">
+                            <option>1-10 Employees</option>
+                            <option>11-50 Employees</option>
+                            <option>50+ Employees</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Message</label>
+                        <textarea rows="4" name="message" placeholder="Tell us about your training needs..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width:100%">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 SuccessRX. All Rights Reserved.</p>
+            <p style="margin-top:10px; opacity:0.6;">Designed for the modern Customer Success professional.</p>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS -->
     <script>
-        /* --- CURRICULUM DATA (EXPANDED & PRACTICAL) --- */
-        const curriculum = [
-            {
-                sectionName: "Section 1: Foundations",
-                modules: [
-                    {
-                        id: "m1",
-                        title: "The CSM Role",
-                        steps: [
-                            {
-                                type: "video",
-                                title: "Video: What is Customer Success?",
-                                source: "Gainsight",
-                                videoId: "nO04770A7_Q",
-                                link: "https://www.youtube.com/watch?v=nO04770A7_Q"
-                            },
-                            {
-                                type: "read",
-                                title: "The 'Is / Does / Means' of Customer Success",
-                                content: `
-                                    <p>Think of Customer Success (CS) like owning a gym membership. Marketing sells you the membership (Sales). The front desk staff checks you in (Support). But the <strong>Personal Trainer</strong> (CSM) ensures you actually show up, use the equipment correctly, and see results so you don't cancel next year.</p>
-                                    
-                                    <div class="idm-container">
-                                        <div class="idm-card">
-                                            <div class="idm-header"><div class="idm-label">IS</div> Definition</div>
-                                            <div class="idm-body">
-                                                <h4>A proactive partnership focused on customer outcomes.</h4>
-                                                <p>Unlike support (reactive: fix broken things) or sales (transactional: sign the deal), CS is an ongoing relationship aimed at ensuring the customer achieves their business goals.</p>
-                                            </div>
-                                        </div>
-                                        <div class="idm-card">
-                                            <div class="idm-header"><div class="idm-label">DOES</div> Function</div>
-                                            <div class="idm-body">
-                                                <h4>Drives adoption, value realization, and retention.</h4>
-                                                <p>CSMs onboard new users, monitor product usage, run Quarterly Business Reviews (QBRs), and identify expansion opportunities.</p>
-                                            </div>
-                                        </div>
-                                        <div class="idm-card">
-                                            <div class="idm-header"><div class="idm-label">MEANS</div> Impact</div>
-                                            <div class="idm-body">
-                                                <h4>Increases Net Revenue Retention (NRR) and Lifetime Value (LTV).</h4>
-                                                <p>It turns customers into advocates, lowers churn, and reduces the need to spend money on finding new customers.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                `
-                            }
-                        ]
-                    },
-                    {
-                        id: "m2",
-                        title: "Business Models & Motions",
-                        steps: [
-                            {
-                                type: "read",
-                                title: "SaaS Economics: The Big Picture",
-                                content: `
-                                    <p>Before you can manage a customer, you need to understand the business model they operate in.</p>
-                                    
-                                    <div class="stage-card">
-                                        <div class="stage-header">Subscription SaaS (The Standard)</div>
-                                        <div class="stage-body">
-                                            <div class="stage-content">
-                                                <p><strong>The Story:</strong> You pay a monthly fee (like Netflix or Spotify) regardless of whether you use it 1 hour or 100 hours. It's predictable revenue for the company.</p>
-                                                <p><strong>The CSM Job:</strong> Ensure they use it enough to get "hooked" so they don't cancel. If they don't use it, they'll find something cheaper.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="stage-card">
-                                        <div class="stage-header">Consumption SaaS (The Pay-As-You-Go)</div>
-                                        <div class="stage-body">
-                                            <div class="stage-content">
-                                                <p><strong>The Story:</strong> Think of your electricity bill. You pay for the electricity you actually use. <strong>AWS (Amazon Web Services)</strong> or <strong>Snowflake</strong> work this way.</p>
-                                                <p><strong>The CSM Job:</strong> "Land, Adopt, Expand, Renew." You are a "Usage Consultant." You don't sell licenses; you help them optimize their usage so they naturally grow their spend.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                `
-                            },
-                            {
-                                type: "read",
-                                title: "The Three Motions: Digital, Scale, High Touch",
-                                content: `
-                                    <p>Not all customers get the same service. We segment customers into "Motions" based on revenue potential.</p>
-                                    
-                                    <div class="stage-card">
-                                        <div class="stage-header">1. Digital Motion (Tech Touch)</div>
-                                        <div class="stage-body">
-                                            <div class="sub-section">
-                                                <span class="stage-label">The Story</span>
-                                                <div class="stage-content"><p>High volume, low touch. <strong>Example:</strong> <strong>Netflix</strong>. You sign up online. No human calls you. You get emails, push notifications, and algorithmic recommendations.</div></div>
-                                            </div>
-                                            <div class="sub-section">
-                                                <span class="stage-label">CSM Focus</span>
-                                                <div class="stage-content">1 CSM manages thousands of accounts using automated email campaigns (HubSpot/Iterable) and in-app guides (Pendo/WalkMe). Focus: "Product-Led Growth" (PLG).</div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="stage-card">
-                                        <div class="stage-header">2. Scale Motion (Low Touch / Hybrid)</div>
-                                        <div class="stage-body">
-                                            <div class="sub-section">
-                                                <span class="stage-label">The Story</span>
-                                                <div class="stage-content"><p>Mid-market mix. <strong>Example:</strong> <strong>Mailchimp</strong> or <strong>HubSpot</strong>. You get an onboarding call, maybe a quarterly check-in, but mostly self-service.</div></div>
-                                            </div>
-                                            <div class="sub-section">
-                                                <span class="stage-label">CSM Focus</span>
-                                                <div class="stage-content">1 CSM manages 200-400 accounts. Use "Tech Touch" alerts (e.g., "User hasn't logged in 14 days") to know when to reach out personally.</div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="stage-card">
-                                        <div class="stage-header">3. High Touch (Enterprise)</div>
-                                        <div class="stage-body">
-                                            <div class="sub-section">
-                                                <span class="stage-label">The Story</span>
-                                                <div class="stage-content"><p>Multi-million dollar deals. <strong>Example:</strong> <strong>Salesforce</strong> or <strong>Workday</strong>. You get a dedicated CSM and CSE. It's the "White Glove" treatment.</div></div>
-                                            </div>
-                                            <div class="sub-section">
-                                                <span class="stage-label">CSM Focus</span>
-                                                <div class="stage-content">1 CSM manages 10-30 accounts. Deep relationship building, Executive Business Reviews (EBRs), and strategic alignment.</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                `
-                            }
-                        ]
-                    }
-                ]
-            },
-            {
-                sectionName: "Section 2: The Journey (Narrative)",
-                modules: [
-                    {
-                        id: "m3",
-                        title: "The Customer Journey",
-                        steps: [
-                            {
-                                type: "read",
-                                title: "Stage 1: Onboarding (The First Date)",
-                                content: `
-                                    <div class="stage-card">
-                                        <div class="stage-header">The Honeymoon Phase</div>
-                                        <div class="stage-body">
-                                            <div class="sub-section">
-                                                <span class="stage-label">The Story</span>
-                                                <div class="stage-content"><p>This is the most dangerous time. The customer has high hopes, but if they don't see value quickly (Time to First Value), they will churn. It's like the first date; if there's no spark, there's no second date.</p></div>
-                                            </div>
-                                            <div class="sub-section">
-                                                <span class="stage-label">The Example</span>
-                                                <div class="stage-content"><div class="case-study-box"><strong>Example:</strong> You buy a Peloton. If it sits in the box for 3 weeks, you return it. If you ride it once, you're hooked.</div></div>
-                                            </div>
-                                            <div class="sub-section">
-                                                <span class="stage-label">CSM Focus</span>
-                                                <div class="stage-content">
-                                                    <strong>Do:</strong> Get them to the "Aha!" moment as fast as possible. Don't teach them every feature; teach them the one thing that solves their immediate problem.<br>
-                                                    <strong>Look For:</strong> Low activation rates, unopened emails.<br>
-                                                    <strong>Good Looks Like:</strong> A signed 30/60/90 Day Plan. 100% of licensed users logged in within first week.
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                `
-                            },
-                            {
-                                type: "read",
-                                title: "Stage 2: Adoption (The Plateau)",
-                                content: `
-                                    <div class="stage-card">
-                                        <div class="stage-header">The Usage Phase</div>
-                                        <div class="stage-body">
-                                            <div class="sub-section">
-                                                <span class="stage-label">The Story</span>
-                                                <div class="stage-content"><p>They are live, but are they using it? "Ghost Users" (people who have accounts but never log in) are the enemy here. Usage decays over time if you don't keep it fresh.</p></div>
-                                            </div>
-                                            <div class="sub-section">
-                                                <span class="stage-label">The Example</span>
-                                                <div class="stage-content"><div class="case-study-box"><strong>Example:</strong> A company buys Slack for 500 employees, but only 50 use it daily. They are wasting 90% of their spend.</div></div>
-                                            </div>
-                                            <div class="sub-section">
-                                                <span class="stage-label">CSM Focus</span>
-                                                <div class="stage-content">
-                                                    <strong>Do:</strong> Drive Breadth (more people logging in) and Depth (using advanced features).<br>
-                                                    <strong>Tip:</strong> "Gamify" adoption. Run a "Streaks" challenge. Recognize users publicly in your community channel for long streaks.
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                `
-                            },
-                            {
-                                type: "read",
-                                title: "Stage 3: Value Realization (The Renewal)",
-                                content: `
-                                    <div class="stage-card">
-                                        <div class="stage-header">The "Prove It" Phase</div>
-                                        <div class="stage-body">
-                                            <div class="sub-section">
-                                                <span class="stage-label">The Story</span>
-                                                <div class="stage-content"><p>The Executive sponsor asks: "Why are we paying for this?" You need data to answer them. If you can't prove value, you can't renew.</p></div>
-                                            </div>
-                                            <div class="sub-section">
-                                                <span class="stage-label">The Example</span>
-                                                <div class="stage-content"><div class="case-study-box"><strong>Example:</strong> Zoom showing you that you saved 10,000 hours of travel time using their software in Q3.</div></div>
-                                            </div>
-                                            <div class="sub-section">
-                                                <span class="stage-label">CSM Focus</strong>
-                                                <div class="stage-content">
-                                                    <strong>Do:</strong> Collect metrics that matter to the business (time saved, money made) and present them in a Quarterly Business Review (QBR).<br>
-                                                    <strong>Role Play:</strong> Exec says "It's too expensive." You reply, "I understand budget is tight. Let's look at the ROI. You saved $50k in support costs last year alone. The software pays for itself." 
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                `
-                            }
-                        ]
-                    }
-                ]
-            },
-            {
-                sectionName: "Section 3: Metrics & Churn",
-                modules: [
-                    {
-                        id: "m4",
-                        title: "Retention Metrics (NRR & GRR)",
-                        steps: [
-                            {
-                                type: "video",
-                                title: "Video: NRR vs GRR (SaaStr)",
-                                source: "SaaStr",
-                                videoId: "9YlG_xS2n4I",
-                                link: "https://www.youtube.com/watch?v=9YlG_xS2n4I"
-                            },
-                            {
-                                type: "read",
-                                title: "NRR vs GRR: The Fundamentals",
-                                content: `
-                                    <p>Imagine a bucket with a hole in it. Water flows in (Revenue), and water leaks out (Churn).</p>
-                                    
-                                    <h3>1. GRR (Gross Retention)</h3>
-                                    <div class="tip-box"><strong>The "Stickiness" Metric.</strong> Measures how much revenue you kept from the customers you had last year. It ignores new sales. High GRR (>90%) means you aren't losing your base.</p>
-
-                                    <h3>2. NRR (Net Retention)</h3>
-                                    <div class="tip-box"><strong>The Growth Engine.</strong> Measures how much revenue you kept PLUS grew (Expansion/Up-sell) from the same customers. If NRR is over 100%, you can stop selling new business and still grow!</p>
-                                `
-                            },
-                            {
-                                type: "read",
-                                title: "Churn: The Silent Killer",
-                                content: `
-                                    <p>Churn is when a customer cancels. It's the enemy.</p>
-                                    
-                                    <h3>The Two Types of Churn</h3>
-                                    <ul>
-                                        <li><strong>Voluntary:</strong> The customer chooses to leave (Price, Product, Competitor).</li>
-                                        <li><strong>Involuntary:</strong> The customer leaves without choosing (Credit Card expired, Business Closed).</li>
-                                    <li><strong>Revenue Churn vs. Logo Churn:</strong> Losing revenue is bad, but losing a small customer is different than losing a big one.</li>
-                                    </ul>
-
-                                    <h3>Health Scoring</h3>
-                                    <p>A composite metric (Red/Yellow/Green) predicting the likelihood of renewal. It combines Product Usage (40%), Engagement (30%), and Commercial health (30%).</p>
-                                    
-                                    <div class="tip-box"><strong>Tip:</strong> Don't just look at the score. Look at the <em>trend</em>. Is the score dropping slowly over 3 months? That is a red flag.</p>
-                                `
-                            }
-                        ]
-                    }
-                ]
-            },
-            {
-                sectionName: "Section 4: The Tech Stack",
-                modules: [
-                    {
-                        id: "m5",
-                        title: "CRM Systems: Salesforce & HubSpot",
-                        steps: [
-                            {
-                                type: "read",
-                                title: "CRMs: Where You Live",
-                                content: `
-                                    <p>The CRM (Customer Relationship Management) is your "System of Record." It holds all the data: Contacts, Deals, Activities, Contracts.</p>
-                                    
-                                    <div class="tech-grid">
-                                        <div class="tech-card">
-                                            <div class="tech-icon">💼</div>
-                                            <div class="tech-name">Salesforce</div>
-                                            <div class="tech-desc">
-                                                The "800lb Gorilla." Extremely customizable, powerful, but complex. Most Enterprise companies use it.<br><br>
-                                                <strong>CSM Use Case:</strong> You will likely use it to log your calls, update opportunities, and manage account plans.
-                                            </div>
-                                        </div>
-                                        <div class="tech-card">
-                                            <div class="tech-icon">🧲</div>
-                                            <div class="tech-name">HubSpot</div>
-                                            <div class="tech-desc">
-                                                Famous for "Inbound Marketing." It links marketing, sales, and service tightly.<br><br>
-                                                <strong>CSM Use Case:</strong> You might be using the "Service Hub" ticketing system to manage customer requests.
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <h3>Best Practices for CRMs:</h3>
-                                    <ul>
-                                        <li><strong>Activity Logging:</strong> Log EVERY interaction. "If it's not in Salesforce, it didn't happen."</li>
-                                        <li><strong>Data Hygiene:</strong> Keep the "Opportunity" object up to date. If a deal is "Closed Won," make sure the "Close Date" is accurate.</li>
-                                    <li><strong>Ownership:</strong> Claim your accounts. Don't let the Account Manager mess with your data.</li>
-                                    </ul>
-                                `
-                            }
-                        ]
-                    },
-                    {
-                        id: "m6",
-                        title: "CSP Platforms: Gainsight & Totango",
-                        steps: [
-                            {
-                                type: "read",
-                                title: "CSPs: Your CSM Exoskeleton",
-                                content: `
-                                    <p>CRM systems hold the data, but CSP (Customer Success Platforms) <em>automate</em> the CSM workflow. They sit on top of the CRM.</p>
-                                    
-                                    <div class="tech-grid">
-                                        <div class="tech-card">
-                                            <div class="tech-name">Gainsight CX</div>
-                                            <div class="tech-desc">
-                                                The pioneer. Great for large Enterprise CSM teams.<br><br>
-                                                <strong>Key Feature:</strong> "Customer Health Score." It calculates health based on usage, support tickets, and NPS.
-                                            </div>
-                                        </div>
-                                        <div class="tech-card">
-                                            <div class="tech-name">Totango</div>
-div class="tech-desc">
-                                                Known for ease of implementation and visual reporting.<br><br>
-                                                <strong>Key Feature:</strong> "SuccessPlays" (Automated email sequences).
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <h3>How You'll Work in Them:</h3>
-                                    <ul>
-                                        <li><strong>The Trigger:</strong> A customer's Health Score turns Red.</li>
-li><strong>The Action:</strong> The CSP automatically assigns a "Save Playbook" to you (e.g., "Reach out to the champion").</li>
-<li><strong>The Result:</strong> You are alerted to the right account at the right time.</li>
-                                    </ul>
-                                `
-                            }
-                        ]
-                    },
-                    {
-                        id: "m7",
-                        title: "Communication & AI Tools",
-                        steps: [
-                            {
-                                type: "read",
-                                title: "Video Communications: Zoom & Gong",
-                                content: `
-                                    <p>Video calls are the lifeblood of Enterprise CSM.</p>
-                                    
-                                    <h3>Zoom</h3>
-                                    <p>The standard for face-to-face meetings.</p>
-                                    <div class="tip-box"><strong>CSM Tip:</strong> Always record the call (with permission). It helps you take better notes and allows you to share insights with your team.</p>
-                                    
-                                    <h3>Gong.io</h3>
-                                    <div class="case-study-box"><strong>The "Moneyball" for CS.</strong></div>
-                                    <p>Gong records calls and transcribes them automatically. It uses AI to analyze sentiment.</p>
-                                    <div class="tip-box"><strong>Use Case:</strong> You can search "When does my customer mention pricing?" to see if price is a blocker.</div>
-                                `
-                            },
-                            {
-                                type: "read",
-                                title: "Collaboration: Slack & Teams",
-                                content: `
-                                    <p>Your communication channels are your office. Treat them like a professional workplace, not a watercooler.</p>
-                                    
-                                    <h3>Slack</h3>
-                                    <div class="case-study-box"><strong>Example:</strong> Many tech companies use Slack.</strong> It's chaotic but organized by #Channels.</div>
-                                    <div class="tip-box"><strong>Best Practice:</strong> Create a dedicated channel for your key customers. Post "Wins" (client logos) there to build social proof.</div>
-
-                                    <h3>Microsoft Teams</h3>
-                                    <p>Used heavily in corporate environments. Integrated deeply with Office 365.</p>
-                                    <div class="tip-box"><strong>Best Practice:</strong> Use the "Wiki" tab to store important QBR documents and Onboarding plans so they are easy to find.</div>
-                                `
-                            },
-                            {
-                                type: "read",
-                                title: "AI for CSMs: Top 10 Use Cases",
-                                content: `
-                                    <p>AI is a force multiplier. Here are the top ways CSMs use AI to save time.</p>
-                                    
-                                    <div class="ai-grid">
-                                        <div class="ai-use-case">
-                                            <strong>1. Sentiment Analysis</strong>
-                                            <p>Use <strong>Gong.io</strong> to analyze tone. "Is this customer happy? Frustrated? Angry?" It flags negative sentiment so you can intervene.</p>
-                                        </div>
-                                        <div class="ai-use-case">
-                                            <strong>2. Meeting Summarization</strong>
-                                            <p>Don't take notes. Use <strong>Otter.ai</strong> or <strong>Fireflies.ai</strong> to record Zoom/Google Meet and get instant transcripts and action items.</p>
-                                        </div>
-                                        <div class="ai-use-case">
-                                            <strong>3. Churn Prediction</strong>
-                                            <p>AI models analyze usage patterns. If login frequency drops 20% WoW (Week over Week), AI flags the account for "Save" intervention.</p>
-                                        </div>
-                                        <div class="ai-use-case">
-                                            <strong>4. Objection Handling</strong>
-                                            <p>"Roleplay" with AI. Paste a customer's objection (e.g., "It's too expensive") and ask AI for 3 different responses to overcome it.</p>
-                                        </div>
-                                        <div class="ai-use-case">
-                                            <strong>5. Competitive Intel</strong>
-                                            <p>Use AI to scan competitor websites and summarize their new pricing models or features for your Sales team.</p>
-                                        </div>
-                                        <div class="ai-use-case">
-                                            <strong>6. Email Drafting</strong>
-                                            <p>Use <strong>ChatGPT</strong> to draft responses to support tickets or "Welcome to the team!" emails, then edit for personal flair.</p>
-                                        </div>
-                                    </div>
-                                `
-                            },
-                            {
-                                type: "read",
-                                title: "Prompting 101",
-                                content: `
-                                    <p>AI is only as good as the prompt. Here is how to talk to your AI assistant.</p>
-                                    
-                                    <div class="ai-prompt-box">
-                                        <span class="prompt-tag">INPUT:</span>
-                                        Act as a Senior CSM. My customer, TechCorp, hasn't logged into our platform in 14 days. Their Health Score is Red. They have 50 licenses but only 5 active users. Write an email that is empathetic but urges them to restart usage to get value. Tone: Professional, helpful, not pushy. Include 3 bullet points on what they are missing out on.
-                                    </div>
-                                    <p><em>(Notice how specific the context is? "TechCorp", "14 days", "Red Health". That specificity creates better output than just "Write an email to a customer who isn't logging in.")</em></p>
-                                    <div class="highlight-box"><strong>Pro Tip:</strong> Always ask AI to "Act as..." a specific persona (e.g., "As a helpful concierge").</div>
-                                `
-                            }
-                        ]
-                    }
-                ]
-            },
-            {
-                sectionName: "Section 5: Strategy & Knowing Your Customer",
-                modules: [
-                    {
-                        id: "m8",
-                        title: "The QBR & Knowing Your Customer",
-                        steps: [
-                            {
-                                type: "video",
-                                title: "Video: How to Run a QBR (Gainsight)",
-                                source: "Gainsight",
-                                videoId: "hA-lDQf2aq8",
-                                link: "https://www.youtube.com/watch?v=hA-lDQf2aq8"
-                            },
-                            {
-                                type: "read",
-                                title: "QBR Playbook: What Good Looks Like",
-                                content: `
-                                    <p>The Quarterly Business Review is your most important cadence. It's not a status update; it's a sales meeting for retention.</p>
-                                    
-                                    <div class="stage-card">
-                                        <div class="stage-header">The "Know Your Customer" Challenge</div>
-                                        <div class="stage-body">
-                                            <p>Don't guess what your customer cares about. Use these methods to find out for sure:</p>
-                                            
-                                            <ul>
-                                                <li><strong>Public Disclosures (Public Companies):</strong> If your customer is public, read their 10-K (SEC File) or 10-Q (Quarterly Report). Look at their "Risk Factors" section. If "Retaining talent" is a risk, emphasize features that reduce manual work.</li>
-                                                <li><strong>LinkedIn Research:</strong> Look up your champion on LinkedIn. Do they just move to a new role? Are they "Growth" focused? Adjust your pitch to their personal career goals.</li>
-                                                <li><strong>Ask Them:</strong> "What are your top 3 priorities for this quarter?" Write them down and put them on the QBR slide deck.</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-
-                                    <div class="stage-card">
-                                        <div class="stage-header">The QBR Agenda (60 Mins)</div>
-                                        <div class="stage-body">
-                                            <ol style="margin-left: 1rem;">
-                                                <li><strong>Executive Summary (5m):</strong> The "Headline." "We've had a great quarter."</li>
-                                                <li><strong>Goals Review (10m):</strong> "Did we hit the goals we set last time? If not, why?"</li>
-                                                <li><strong>Value Delivered (15m):</strong> The "Meat." "You saved 200 hours using our workflow."</li>
-                                                <li><strong>Strategic Roadmap (20m):</strong> "Here is what we are building next that helps you."</li>
-                                                <li><strong>The Ask (10m):</strong> "Can we expand to Team B? Can we discuss next year's contract?"</li>
-                                            </ol>
-                                        </div>
-                                    </div>
-                                `
-                            }
-                        ]
-                    }
-                ]
-            },
-            {
-                sectionName: "Section 6: Certification",
-                modules: [
-                    {
-                        id: "exam",
-                        title: "Final Assessment",
-                        steps: [
-                            {
-                                type: "read",
-                                title: "Exam Instructions",
-                                content: `<p>You have completed all learning modules. This exam tests your comprehensive knowledge of the SuccessRX curriculum.</p><p>You must answer <strong>all questions correctly</strong> to generate your certificate.</p>`
-                            },
-                            {
-                                type: "read",
-                                title: "Candidate Details",
-                                content: `
-                                    <div class="name-input-group">
-                                        <label>Enter your Full Name for the Certificate:</label>
-                                        <input type="text" id="candidateName" class="name-input" placeholder="e.g. Jane Doe" oninput="saveName()">
-                                    </div>
-                                `
-                            },
-                            {
-                                type: "quiz",
-                                title: "Question 1: The CSM Role",
-                                question: "Which tool is best for analyzing the sentiment (tone) of customer calls?",
-                                options: ["ChatGPT", "Gong.io", "Excel", "Slack"],
-                                answer: 1
-                            },
-                            {
-                                type: "quiz",
-                                title: "Question 2: Metrics",
-                                question: "A company starts Jan with $100k MRR. They expand $10k. They churn $5k. What is the GRR?",
-                                options: ["105%", "95%", "100%", "90%"],
-                                answer: 1
-                            },
-                            {
-                                type: "quiz",
-                                title: "Question 3: The Journey",
-                                question: "In the Onboarding stage, what is the primary CSM Focus?",
-                                options: ["Renewal Negotiation", "Time to Value (TTV)", "Driving Usage", "Running EBRs"],
-                                answer: 2
-                            },
-                            {
-                                type: "quiz",
-                                title: "Question 4: Strategy",
-                                question: "What is the primary purpose of the 'Value Delivered' section in a QBR?",
-                                options: ["To show new features", "To justify the renewal cost and prove ROI", "To ask for more money", "To introduce the team"],
-                                answer: 1
-                            },
-                            {
-                                type: "quiz",
-                                title: "Question 5: Tech Stack",
-                                question: "Which platform sits on top of the CRM to automate CSM workflows?",
-                                options: ["Excel", "Gainsight", "Slack", "Zoom"],
-                                answer: 1
-                            },
-                             {
-                                type: "quiz",
-                                title: "Question 6: AI",
-                                question: "Why is providing context (e.g., 'Act as a Senior CSM') important in AI prompting?",
-                                options: ["To make the AI sound more professional", "To help the AI understand the persona and tone", "To make the response longer", "To confuse the AI"],
-                                answer: 1
-                            },
-                            {
-                                type: "quiz",
-                                title: "Question 7: Churn",
-                                question: "A customer's credit card expires and they don't update it, resulting in cancellation. This is:",
-                                options: ["Voluntary Churn", "Involuntary Churn", "Logo Churn", "Revenue Churn"],
-                                answer: 1
-                            }
-                        ]
-                    }
-                ]
-            }
-        ];
-
-        /* --- STATE MANAGEMENT --- */
-        let globalSteps = [];
-        curriculum.forEach(section => {
-            section.modules.forEach(mod => {
-                mod.steps.forEach((step, index) => {
-                    globalSteps.push({
-                        ...step,
-                        sectionName: section.sectionName,
-                        moduleName: mod.title,
-                        globalId: `${mod.id}-step${index}`,
-                        moduleTotalSteps: mod.steps.length
-                    });
-                });
-            });
-        });
-
-        let currentStepIndex = 0;
-        let completedSteps = new Set();
-        let userName = localStorage.getItem('successrx_name') || "";
-
-        /* --- INIT --- */
-        function init() {
-            if(userName) document.getElementById('candidateName').value = userName;
-            renderStep(0);
-        }
-
-        function saveName() {
-            userName = document.getElementById('candidateName').value;
-            localStorage.setItem('successrx_name', userName);
-        }
-
-        /* --- RENDER LOGIC --- */
-        function renderStep(index) {
-            const step = globalSteps[index];
-            const container = document.getElementById('contentArea');
-            const breadcrumbs = document.getElementById('breadcrumbs');
-            const nextBtn = document.getElementById('nextBtn');
-            const prevBtn = document.getElementById('prevBtn');
-
-            breadcrumbs.innerHTML = `
-                <span>${step.sectionName}</span>
-                <span class="separator">/</span>
-                <span>${step.moduleName}</span>
-                <span class="separator">/</span>
-                <span class="breadcrumb-item">${step.title}</span>
-            `;
-
-            let html = `<h1>${step.title}</h1><div class="step-meta">${step.type} Step</div>`;
-
-            if (step.type === 'video') {
-                html += `
-                    <div class="video-wrapper">
-                        <iframe width="560" height="315" src="https://www.youtube.com/embed/${step.videoId}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </div>
-                    <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:1rem;">Source: ${step.source}</p>
-                    <div class="action-check ${completedSteps.has(step.globalId) ? 'checked' : ''}" onclick="toggleStep('${step.globalId}')">
-                        <div class="checkbox-box">${completedSteps.has(step.globalId) ? '✓' : ''}</div>
-                        <span style="font-weight:600; color:var(--text-main);">I have watched this video.</span>
-                    </div>
-                `;
-            } else if (step.type === 'read') {
-                html += `<div class="read-content">${step.content}</div>`;
-                if(!step.title.includes("Instructions") && !step.title.includes("Details")) {
-                    html += `
-                        <div class="action-check ${completedSteps.has(step.globalId) ? 'checked' : ''}" onclick="toggleStep('${step.globalId}')">
-                            <div class="checkbox-box">${completedSteps.has(step.globalId) ? '✓' : ''}</div>
-                            <span style="font-weight:600; color:var(--text-main);">I have read and understood this.</span>
-                        </div>
-                    `;
-                } else if (step.title.includes("Details")) {
-                     html += `<div style="margin-top:1rem; font-size:0.85rem; color:var(--text-muted);">Enter your name to generate the certificate at the end.</div>`;
-                }
-            } else if (step.type === 'quiz') {
-                html += `
-                    <div style="background:var(--primary-light); padding:1.5rem; border-radius:12px; border:1px solid var(--accent);">
-                        <p style="font-weight:700; margin-bottom:1rem; color:var(--primary-dark);">${step.question}</p>
-                        <div id="quiz-options">
-                            ${step.options.map((opt, i) => `
-                                <button class="quiz-btn" onclick="handleQuiz(this, ${i}, ${step.answer}, '${step.globalId}')">${opt}</button>
-                            `).join('')}
-                        </div>
-                        <div id="quiz-feedback" style="margin-top:1rem; font-weight:bold; font-size:0.9rem;"></div>
-                    </div>
-                `;
-            } else if (step.type === 'certificate') {
-                html += `<div class="cert-wrapper" id="certArea"></div>`;
-            }
-
-            container.innerHTML = html;
-
-            prevBtn.disabled = index === 0;
-            
-            const isLastStep = index === globalSteps.length - 1;
-            if (isLastStep) {
-                nextBtn.style.display = 'none'; 
+        // Toggle Mobile Menu
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            if (navLinks.style.display === 'flex') {
+                navLinks.style.display = 'none';
             } else {
-                nextBtn.style.display = 'flex';
-                if (completedSteps.has(step.globalId)) {
-                    nextBtn.disabled = false;
-                    nextBtn.innerHTML = "Next Step →";
-                } else {
-                    nextBtn.disabled = true;
-                    nextBtn.innerHTML = "Complete to Continue";
-                }
-            }
-            
-            if(step.type === 'quiz' && index === globalSteps.length -1 && isModuleComplete('exam')) {
-                 showCertificate();
-            }
-
-            updateProgress();
-        }
-
-        /* --- INTERACTIONS --- */
-        function nav(dir) {
-            const newIndex = currentStepIndex + dir;
-            if(newIndex >= 0 && newIndex < globalSteps.length) {
-                currentStepIndex = newIndex;
-                renderStep(currentStepIndex);
+                navLinks.style.display = 'flex';
+                navLinks.style.flexDirection = 'column';
+                navLinks.style.position = 'absolute';
+                navLinks.style.top = '60px';
+                navLinks.style.right = '0';
+                navLinks.style.background = 'white';
+                navLinks.style.width = '100%';
+                navLinks.style.padding = '20px';
+                navLinks.style.borderBottom = '1px solid #ddd';
             }
         }
 
-        function toggleStep(id) {
-            if(completedSteps.has(id)) {
-                completedSteps.delete(id);
+        // Toggle Intake Form Visibility
+        function toggleIntake() {
+            const form = document.getElementById('intake-form');
+            if (form.style.display === 'block') {
+                form.style.display = 'none';
             } else {
-                completedSteps.add(id);
-            }
-            renderStep(currentStepIndex);
-        }
-
-        function handleQuiz(btn, selectedIdx, correctIdx, stepId) {
-            const parent = document.getElementById('quiz-options');
-            const feedback = document.getElementById('quiz-feedback');
-            const buttons = parent.querySelectorAll('.quiz-btn');
-            
-            buttons.forEach(b => b.disabled = true);
-
-            if (selectedIdx === correctIdx) {
-                btn.classList.add('correct');
-                feedback.style.color = "var(--success)";
-                feedback.textContent = "Correct! Moving to next step...";
-                completedSteps.add(stepId);
-                
-                setTimeout(() => {
-                    if(currentStepIndex < globalSteps.length - 1) {
-                        currentStepIndex++;
-                        renderStep(currentStepIndex);
-                    } else {
-                         renderStep(currentStepIndex); 
-                    }
-                }, 1500);
-            } else {
-                btn.classList.add('wrong');
-                buttons[correctIdx].classList.add('correct');
-                feedback.style.color = "#ef4444";
-                feedback.textContent = "Incorrect. Please try again.";
-                
-                setTimeout(() => {
-                    buttons.forEach(b => {
-                        b.disabled = false;
-                        b.classList.remove('correct', 'wrong');
-                    });
-                    feedback.textContent = "";
-                }, 2000);
+                form.style.display = 'block';
             }
         }
-
-        function isModuleComplete(modId) {
-            return globalSteps
-                .filter(s => s.globalId.startsWith(modId))
-                .every(s => completedSteps.has(s.globalId));
-        }
-
-        function updateProgress() {
-            const pct = Math.round((completedSteps.size / globalSteps.length) * 100);
-            document.getElementById('progressFill').style.width = `${pct}%`;
-            document.getElementById('progressText').textContent = `${pct}% Complete`;
-        }
-
-        function showCertificate() {
-            const container = document.getElementById('certArea');
-            const name = userName || "Candidate Name";
-            
-            container.innerHTML = `
-                <h2 style="color:var(--primary-dark); margin-bottom:1rem;">Prescription Filled! 🎉</h2>
-                <canvas id="certCanvas" width="800" height="500" class="cert-canvas"></canvas>
-                <button class="btn-download" onclick="downloadCertificate()">Download Certificate</button>
-            `;
-
-            const canvas = document.getElementById('certCanvas');
-            const ctx = canvas.getContext('2d');
-
-            ctx.fillStyle = "#ffffff";
-            ctx.fillRect(0,0, 800, 500);
-            
-            ctx.lineWidth = 15;
-            ctx.strokeStyle = "#0891b2"; 
-            ctx.strokeRect(0,0, 800, 500);
-            
-            ctx.lineWidth = 2;
-            ctx.strokeStyle = "#e2e8f0";
-            ctx.strokeRect(15,15, 770, 470);
-
-            ctx.fillStyle = "#0891b2";
-            ctx.font = "bold 24px Arial";
-            ctx.fillText("SuccessRX", 60, 60);
-
-            ctx.fillStyle = "#0f172a";
-            ctx.textAlign = "center";
-            ctx.font = "bold 36px Inter, sans-serif";
-            ctx.fillText("Certificate of Completion", 400, 130);
-
-            ctx.font = "italic 18px Inter, sans-serif";
-            ctx.fillStyle = "#64748b";
-            ctx.fillText("This certifies that", 400, 200);
-
-            ctx.font = "bold 42px Inter, sans-serif";
-            ctx.fillStyle = "#0ea5e9";
-            ctx.fillText(name, 400, 260);
-
-            ctx.font = "italic 18px Inter, sans-serif";
-            ctx.fillStyle = "#64748b";
-            ctx.fillText("Has mastered the principles of Customer Success,", 400, 320);
-            ctx.fillText("Segmentation, Metrics, Strategy, and AI.", 400, 345);
-
-            const date = new Date().toLocaleDateString();
-            ctx.font = "16px Inter, sans-serif";
-            ctx.fillStyle = "#94a3b8";
-            ctx.fillText(`Date: ${date}`, 400, 420);
-        }
-
-        function downloadCertificate() {
-            const canvas = document.getElementById('certCanvas');
-            const link = document.createElement('a');
-            link.download = 'SuccessRX_Certificate.png';
-            link.href = canvas.toDataURL();
-            link.click();
-        }
-
-        init();
-
     </script>
 </body>
 </html>
