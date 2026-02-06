@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register Interest | SuccessRX</title>
+    <title>Contact Sales | SuccessRX</title>
 
     <style>
+        /* --- SHARED CSS VARIABLES --- */
         :root {
             --primary: #0284c7;
             --primary-dark: #0369a1;
@@ -16,8 +17,7 @@
             --white: #ffffff;
             --border: #e2e8f0;
             --font-main: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-                      0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
         }
 
         * {
@@ -37,7 +37,9 @@
         }
 
         a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
 
+        /* --- UTILITIES --- */
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -60,9 +62,7 @@
             color: var(--white);
         }
 
-        .btn-primary:hover {
-            background-color: var(--primary-dark);
-        }
+        .btn-primary:hover { background-color: var(--primary-dark); }
 
         /* --- HEADER --- */
         header {
@@ -82,11 +82,13 @@
         }
 
         .logo {
-            position: absolute;
-            left: 0;
             font-size: 1.5rem;
             font-weight: 800;
             color: var(--primary);
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
         }
 
         .logo span { color: var(--dark); }
@@ -94,7 +96,6 @@
         .nav-links {
             display: flex;
             gap: 30px;
-            list-style: none;
         }
 
         .nav-links a {
@@ -102,9 +103,17 @@
             color: var(--gray);
         }
 
-        .nav-links a.active {
-            color: var(--primary);
-            font-weight: 700;
+        .nav-links a:hover { color: var(--primary); }
+        .nav-links a.active { color: var(--primary); font-weight: 700; }
+
+        .mobile-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
         }
 
         /* --- HERO --- */
@@ -112,29 +121,34 @@
             background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
             padding: 100px 0;
             flex: 1;
+            display: flex;
+            align-items: center;
         }
 
         .card-container {
-            max-width: 600px;
+            max-width: 700px;
             margin: 0 auto;
             background: var(--white);
+            border: 1px solid var(--border);
             border-radius: 12px;
-            padding: 40px;
             box-shadow: var(--shadow);
+            padding: 40px;
             text-align: center;
         }
 
         .card-container h2 {
             font-size: 2rem;
+            color: var(--dark);
             margin-bottom: 10px;
         }
 
         .card-container p {
             color: var(--gray);
             margin-bottom: 30px;
+            font-size: 1.1rem;
         }
 
-        /* --- FORM --- */
+        /* --- FORM STYLES --- */
         .form-group {
             margin-bottom: 20px;
             text-align: left;
@@ -144,17 +158,21 @@
             font-weight: 600;
             margin-bottom: 8px;
             display: block;
+            font-size: 0.95rem;
+            color: var(--dark);
         }
 
-        input, select {
+        input, select, textarea {
             width: 100%;
             padding: 12px;
-            border-radius: 6px;
             border: 1px solid var(--border);
+            border-radius: 6px;
+            font-family: inherit;
             font-size: 1rem;
+            box-sizing: border-box;
         }
 
-        input:focus, select:focus {
+        input:focus, select:focus, textarea:focus {
             outline: 2px solid var(--primary);
             border-color: transparent;
         }
@@ -165,96 +183,134 @@
             color: #94a3b8;
             padding: 30px 0;
             text-align: center;
+            font-size: 0.9rem;
             margin-top: auto;
         }
 
+        /* --- RESPONSIVE --- */
         @media (max-width: 768px) {
             .nav-links { display: none; }
+            .mobile-toggle { display: block; }
+            .hero { padding: 60px 0; }
         }
     </style>
 </head>
 <body>
 
-<header>
-    <div class="container">
-        <nav>
-            <div class="logo">Success<span>RX</span></div>
-            <ul class="nav-links">
-                <!-- HOME REMOVED PER YOUR REQUEST -->
-                <li><a href="curriculum.html">Curriculum</a></li>
-                <!-- UPDATED TO LINK TO CONTACT.HTML PER YOUR REQUEST -->
-                <li><a href="contact.html">Engagements</a></li>
-                <li><a href="index.html#testimonials">Reviews</a></li>
-                <li><a href="contact.html" class="active">Contact</a></li>
-            </ul>
-        </nav>
-    </div>
-</header>
-
-<section class="hero">
-    <div class="container">
-        <div class="card-container">
-            <div style="font-size: 3rem; margin-bottom: 15px; color: var(--primary);">⏳</div>
-
-            <h2>SuccessRX is coming soon.</h2>
-            <p>Join our waitlist to be notified when we launch.</p>
-
-            <!-- GOOGLE FORM SUBMISSION -->
-            <form
-                action="https://docs.google.com/forms/d/e/1FAIpQLSeHEwspGZvVVE2VNz0lma6UYMC5wbqKoovbjPlqJIAAinrodg/viewform?usp=header"
-                method="POST"
-                target="_blank"
-            >
-
-                <div class="form-group">
-                    <label>Full Name</label>
-                    <input
-                        type="text"
-                        name="entry.2141895909"
-                        placeholder="Jane Doe"
-                        required
-                    >
-                </div>
-
-                <div class="form-group">
-                    <label>Work Email</label>
-                    <input
-                        type="email"
-                        name="entry.1473250963"
-                        placeholder="jane@company.com"
-                        required
-                    >
-                </div>
-
-                <div class="form-group">
-                    <label>Number of Users / Registrations</label>
-                    <select name="entry.1340011488" required>
-                        <option value="" disabled selected>Select team size...</option>
-                        <option value="1">Just myself (1 seat)</option>
-                        <option value="2-5">Small Team (2–5 seats)</option>
-                        <option value="6-20">Mid Size Team (6–20 seats)</option>
-                        <option value="21+">Enterprise (21+ seats)</option>
-                    </select>
-                </div>
-
-                <button type="submit" class="btn btn-primary">
-                    Join Waiting List
-                </button>
-
-                <p style="margin-top:15px; font-size:.85rem; opacity:.7;">
-                    We respect your privacy. No spam.
-                </p>
-
-            </form>
+    <!-- HEADER -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Success<span>RX</span></div>
+                <ul class="nav-links">
+                    <!-- REMOVED 'HOME' PER YOUR REQUEST -->
+                    <li><a href="curriculum.html">Curriculum</a></li>
+                    <!-- LINKS TO CONTACT.HTML PER YOUR REQUEST -->
+                    <li><a href="contact.html">Engagements</a></li>
+                    <li><a href="index.html#testimonials">Reviews</a></li>
+                    <li><a href="contact.html" class="active">Contact</a></li>
+                </ul>
+                <div class="mobile-toggle" onclick="toggleMenu()">☰</div>
+            </nav>
         </div>
-    </div>
-</section>
+    </header>
 
-<footer>
-    <div class="container">
-        <p>&copy; 2026 SuccessRX. All rights reserved.</p>
-    </div>
-</footer>
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="container">
+            <div class="card-container">
+                <h2>Contact Sales</h2>
+                <p>Looking to train a team of 5+? Let's talk.</p>
 
+                <!-- GOOGLE FORM: CONTACT SALES INTAKE -->
+                <form 
+                    action="https://docs.google.com/forms/d/e/1FAIpQLSeHEwspGZvVVE2VNz0lma6UYMC5wbqKoovbjPlqJIAAinrodg/formResponse"
+                    method="POST"
+                    target="_blank"
+                >
+                    
+                    <!-- Intent: Sales -->
+                    <input type="hidden" name="entry.1232198312" value="Sales">
+                
+                    <!-- Full Name -->
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input
+                            type="text"
+                            name="entry.1914984578"
+                            placeholder="John Doe"
+                            required
+                        >
+                    </div>
+                
+                    <!-- Email -->
+                    <div class="form-group">
+                        <label>Work Email</label>
+                        <input
+                            type="email"
+                            name="entry.1026388423"
+                            placeholder="john@company.com"
+                            required
+                        >
+                    </div>
+                
+                    <!-- Company Size -->
+                    <div class="form-group">
+                        <label>Company Size</label>
+                        <select name="entry.783258885" required>
+                            <option value="" disabled selected>Select company size…</option>
+                            <option value="1-10">1–10</option>
+                            <option value="11-50">11–50</option>
+                            <option value="50+">50+</option>
+                        </select>
+                    </div>
+                
+                    <!-- Training Focus / Message -->
+                    <div class="form-group">
+                        <label>Message / Training Focus</label>
+                        <textarea
+                            name="entry.198945468"
+                            placeholder="Tell us what you’re looking for (CS Maturity, AI, Platforms, etc.)"
+                            rows="3"
+                        ></textarea>
+                    </div>
+                  
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+                
+                <p style="margin-top:15px; font-size:0.9rem; color:var(--gray); text-align:center;">
+                    For individual training inquiries, please visit our Curriculum page.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 SuccessRX. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script>
+        // Toggle Mobile Menu
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            if (navLinks.style.display === 'flex') {
+                navLinks.style.display = 'none';
+            } else {
+                navLinks.style.display = 'flex';
+                navLinks.style.flexDirection = 'column';
+                navLinks.style.position = 'absolute';
+                navLinks.style.top = '60px';
+                navLinks.style.right = '0';
+                navLinks.style.background = 'white';
+                navLinks.style.width = '100%';
+                navLinks.style.padding = '20px';
+                navLinks.style.borderBottom = '1px solid #ddd';
+            }
+        }
+    </script>
 </body>
 </html>
