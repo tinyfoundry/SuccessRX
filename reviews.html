@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testimonials | SuccessRX</title>
+    <style>
+        /* --- EXACT CSS COPIED FROM INDEX.HTML --- */
+        :root {
+            --primary: #0284c7; /* Clinical Blue */
+            --primary-dark: #0369a1;
+            --accent: #e11d48; /* Vital Red */
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --white: #ffffff;
+            --border: #e2e8f0;
+            --font-main: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --star-gold: #f59e0b;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        
+        body {
+            font-family: var(--font-main);
+            color: var(--dark);
+            background-color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+
+        /* --- UTILITIES --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+        .section-title p {
+            color: var(--gray);
+            font-size: 1.1rem;
+        }
+        
+        /* --- HEADER (CENTERED LOGIC) --- */
+        header {
+            background: var(--white);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 15px 0;
+        }
+        nav {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .logo span { color: var(--dark); }
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        .nav-links a {
+            font-weight: 500;
+            color: var(--gray);
+        }
+        .nav-links a:hover { color: var(--primary); }
+        .nav-links a.active { color: var(--primary); font-weight: 700; }
+        .mobile-toggle { 
+            display: none; 
+            font-size: 1.5rem; 
+            cursor: pointer;
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        /* --- HERO --- */
+        .hero {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            padding: 80px 0;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 3rem;
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* --- TESTIMONIALS GRID --- */
+        .reviews-section { padding: 60px 0; flex: 1; }
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .review-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s;
+        }
+        .review-card:hover { transform: translateY(-5px); border-color: var(--primary); }
+
+        .stars { color: var(--star-gold); margin-bottom: 15px; font-size: 1.2rem; letter-spacing: 2px; }
+        
+        .quote {
+            font-style: italic;
+            color: var(--dark);
+            margin-bottom: 30px;
+            font-size: 1.05rem;
+            line-height: 1.6;
+            flex-grow: 1; /* Pushes author to bottom */
+        }
+
+        /* Updated Author Styling for Anonymity */
+        .author {
+            border-top: 1px solid var(--border);
+            padding-top: 20px;
+            text-align: center;
+        }
+        .author h4 { font-size: 1rem; color: var(--dark); margin-bottom: 4px; font-weight: 700; }
+        .author span { font-size: 0.85rem; color: var(--gray); display: block; }
+        
+        .tag {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: 0.5px;
+            margin-bottom: 10px;
+            display: block;
+            opacity: 0; /* Hidden as requested to keep it simple */
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background: var(--dark);
+            color: #94a3b8;
+            padding: 30px 0;
+            text-align: center;
+            font-size: 0.9rem;
+            margin-top: auto;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .mobile-toggle { display: block; }
+            .hero h1 { font-size: 2.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Success<span>RX</span></div>
+                <ul class="nav-links">
+                    <li><a href="curriculum.html">Curriculum</a></li>
+                    <li><a href="index.html#events">Events</a></li>
+                    <li><a href="reviews.html" class="active">Reviews</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <div class="mobile-toggle" onclick="toggleMenu()">☰</div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="container">
+            <h1>Testimonials & Success Stories</h1>
+            <p>Hear from professionals who have applied the SuccessRX methodology.</p>
+        </div>
+    </section>
+
+    <!-- REVIEWS GRID -->
+    <section class="reviews-section">
+        <div class="container">
+            <div class="grid-3">
+
+                <!-- Review 1 -->
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="quote">"The framework provided here completely shifted my mindset. I stopped treating symptoms (support tickets) and started diagnosing root causes. My churn rate dropped significantly in just two quarters."</p>
+                    <div class="author">
+                        <h4>Senior Customer Success Manager</h4>
+                        <span>B2B SaaS Enterprise</span>
+                    </div>
+                </div>
+
+                <!-- Review 2 -->
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="quote">"I've attended dozens of CS workshops, but the methodology for EBRs here is unmatched. It helped me structure my quarterly reviews in a way that executives actually care about—focusing on value, not just usage."</p>
+                    <div class="author">
+                        <h4>VP of Customer Success</h4>
+                        <span>Fintech Industry</span>
+                    </div>
+                </div>
+
+                <!-- Review 3 -->
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="quote">"Data is useless without the right context. This training taught me how to build a weighted health score that actually predicts behavior. It's the most practical analytics course I've ever taken."</p>
+                    <div class="author">
+                        <h4>Head of Customer Operations</h4>
+                        <span>Series B Technology Company</span>
+                    </div>
+                </div>
+
+                <!-- Review 4 -->
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="quote">"As someone new to the SaaS industry, I was overwhelmed by the jargon. SuccessRX broke everything down into a clear, step-by-step process. I felt confident leading my first customer meeting within a week."</p>
+                    <div class="author">
+                        <h4>Customer Success Associate</h4>
+                        <span>Cloud Software Provider</span>
+                    </div>
+                </div>
+
+                <!-- Review 5 -->
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="quote">"Scaling a team is hard. This curriculum gave us the playbooks we needed to standardize our onboarding process. The 'clinical' approach to customer health has unified our entire team's voice."</p>
+                    <div class="author">
+                        <h4>Customer Success Team Lead</h4>
+                        <span>High-Growth Startup</span>
+                    </div>
+                </div>
+
+                <!-- Review 6 -->
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="quote">"I always struggled to identify the right time for an upsell without sounding pushy. The 'Growth Mechanics' module changed that. I've now doubled my expansion revenue by focusing on genuine value milestones."</p>
+                    <div class="author">
+                        <h4>Enterprise Account Manager</h4>
+                        <span>SaaS Platform</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 SuccessRX. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Toggle Mobile Menu
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            if (navLinks.style.display === 'flex') {
+                navLinks.style.display = 'none';
+            } else {
+                navLinks.style.display = 'flex';
+                navLinks.style.flexDirection = 'column';
+                navLinks.style.position = 'absolute';
+                navLinks.style.top = '60px';
+                navLinks.style.right = '0';
+                navLinks.style.background = 'white';
+                navLinks.style.width = '100%';
+                navLinks.style.padding = '20px';
+                navLinks.style.borderBottom = '1px solid #ddd';
+            }
+        }
+    </script>
+</body>
+</html>
