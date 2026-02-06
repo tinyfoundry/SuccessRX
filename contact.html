@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Interest | SuccessRX</title>
+    <style>
+        /* --- EXACT CSS COPIED FROM INDEX.HTML --- */
+        :root {
+            --primary: #0284c7; /* Clinical Blue */
+            --primary-dark: #0369a1;
+            --accent: #e11d48; /* Vital Red */
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --white: #ffffff;
+            --border: #e2e8f0;
+            --font-main: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        
+        body {
+            font-family: var(--font-main);
+            color: var(--dark);
+            background-color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+
+        /* --- UTILITIES --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            text-align: center;
+            border: none;
+            width: 100%;
+        }
+        .btn-primary {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+        .btn-primary:hover { background-color: var(--primary-dark); }
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            width: auto;
+            padding: 8px 16px;
+        }
+        .btn-outline:hover { background-color: var(--primary); color: var(--white); }
+        
+        /* --- HEADER (UPDATED FOR CENTERED LINKS) --- */
+        header {
+            background: var(--white);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 15px 0;
+        }
+        nav {
+            position: relative; /* Establish context for absolute logo/menu */
+            display: flex;
+            justify-content: center; /* Centers the UL (Links) */
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            /* Positioning to pin it to the left */
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .logo span { color: var(--dark); }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        .nav-links a {
+            font-weight: 500;
+            color: var(--gray);
+        }
+        .nav-links a:hover { color: var(--primary); }
+        .nav-links a.active { color: var(--primary); font-weight: 700; }
+        
+        /* Mobile Toggle Positioning */
+        .mobile-toggle { 
+            display: none; 
+            font-size: 1.5rem; 
+            cursor: pointer;
+            /* Positioning to pin it to the right */
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        /* --- HERO & FORM STYLES --- */
+        .hero {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            padding: 100px 0;
+            flex: 1; /* Pushes footer down */
+            display: flex;
+            align-items: center;
+        }
+        
+        .card-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            padding: 40px;
+            text-align: center;
+        }
+
+        .card-container h2 {
+            font-size: 2rem;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+        .card-container p {
+            color: var(--gray);
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+        
+        .form-group { margin-bottom: 20px; text-align: left; }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--dark);
+        }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 1rem;
+            background: var(--light);
+        }
+        .form-group input:focus, .form-group select:focus {
+            outline: 2px solid var(--primary);
+            border-color: transparent;
+            background: var(--white);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background: var(--dark);
+            color: #94a3b8;
+            padding: 30px 0;
+            text-align: center;
+            font-size: 0.9rem;
+            margin-top: auto;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .mobile-toggle { display: block; }
+            .hero { padding: 60px 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Success<span>RX</span></div>
+                <ul class="nav-links">
+                    <li><a href="curriculum.html">Curriculum</a></li>
+                    <li><a href="index.html#events">Events</a></li>
+                    <li><a href="index.html#testimonials">Reviews</a></li>
+                    <li><a href="contact.html" class="active">Contact</a></li>
+                </ul>
+                <div class="mobile-toggle" onclick="toggleMenu()">☰</div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="container">
+            <div class="card-container">
+                <div style="font-size: 3rem; color: var(--primary); margin-bottom: 15px;">⏳</div>
+                
+                <h2>SuccessRX is coming soon.</h2>
+                <p>Enter your details below to join our waiting list and be notified once we're live.</p>
+                
+                <!-- 
+                   TODO: Replace "https://formspree.io/f/YOUR_FORM_ID" 
+                   with your actual Formspree endpoint to capture these leads 
+                -->
+                <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                    
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" placeholder="Jane Doe" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Work Email</label>
+                        <input type="email" id="email" name="email" placeholder="jane@company.com" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="users">Number of Users / Registrations</label>
+                        <select id="users" name="users" required>
+                            <option value="" disabled selected>Select team size...</option>
+                            <option value="1">Just myself (1 seat)</option>
+                            <option value="2-5">Small Team (2-5 seats)</option>
+                            <option value="6-20">Mid Size Team (6-20 seats)</option>
+                            <option value="21+">Enterprise (21+ seats)</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Join Waiting List</button>
+                    
+                    <p style="margin-top: 15px; font-size: 0.85rem; opacity: 0.7;">
+                        We respect your privacy. No spam, just updates.
+                    </p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 SuccessRX. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Toggle Mobile Menu
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            if (navLinks.style.display === 'flex') {
+                navLinks.style.display = 'none';
+            } else {
+                navLinks.style.display = 'flex';
+                navLinks.style.flexDirection = 'column';
+                navLinks.style.position = 'absolute';
+                navLinks.style.top = '60px';
+                navLinks.style.right = '0';
+                navLinks.style.background = 'white';
+                navLinks.style.width = '100%';
+                navLinks.style.padding = '20px';
+                navLinks.style.borderBottom = '1px solid #ddd';
+            }
+        }
+    </script>
+</body>
+</html>
