@@ -6,46 +6,76 @@
 <title>SuccessRX | The Prescription for Customer Success</title>
 
 <style>
+/* --- RESET & VARIABLES --- */
 :root {
   --primary:#0284c7; --primary-dark:#0369a1;
   --accent:#e11d48; --dark:#0f172a;
   --light:#f8fafc; --gray:#64748b;
-  --white:#fff; --border:#e2e8f0;
-  --font:'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  --white:#ffffff; --border:#e2e8f0;
+  --font-main:'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
   --shadow:0 4px 6px -1px rgba(0,0,0,.1),0 2px 4px -1px rgba(0,0,0,.06);
 }
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:var(--font);background:var(--light);color:var(--dark)}
+*{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth}
+body{font-family:var(--font-main);color:var(--dark);background:var(--light);line-height:1.6}
 a{text-decoration:none;color:inherit}
+ul{list-style:none}
 .container{max-width:1200px;margin:0 auto;padding:0 20px}
 .btn{padding:12px 24px;border-radius:6px;font-weight:600;border:none;cursor:pointer}
 .btn-primary{background:var(--primary);color:#fff}
+.btn-primary:hover{background:var(--primary-dark)}
 .btn-outline{border:2px solid var(--primary);color:var(--primary);background:none}
 .btn-outline:hover{background:var(--primary);color:#fff}
-
-header{background:#fff;border-bottom:1px solid var(--border);padding:15px 0}
-nav{display:flex;justify-content:center;align-items:center;position:relative}
-.logo{position:absolute;left:0;font-weight:800;color:var(--primary)}
-.logo span{color:var(--dark)}
-
-.hero{padding:80px 0;text-align:center;background:linear-gradient(135deg,#f0f9ff,#e0f2fe)}
-.hero h1{font-size:3rem;margin-bottom:20px}
-.hero p{max-width:700px;margin:0 auto 30px;color:var(--gray)}
-
-.pricing,.contact{padding:80px 0}
-.card{
-  max-width:600px;margin:0 auto;background:#fff;
-  padding:40px;border-radius:12px;box-shadow:var(--shadow)
-}
-
+.section-title{text-align:center;margin-bottom:40px}
+.section-title h2{font-size:2.5rem;margin-bottom:10px}
+.section-title p{color:var(--gray)}
 .form-group{margin-bottom:15px}
 .form-group input,.form-group select,.form-group textarea{
   width:100%;padding:10px;border:1px solid var(--border);border-radius:4px
 }
 
-.intake-container{display:none;margin-top:20px}
+/* --- HEADER --- */
+header{background:#fff;border-bottom:1px solid var(--border);padding:15px 0;position:sticky;top:0;z-index:10}
+nav{display:flex;justify-content:center;align-items:center;position:relative}
+.logo{position:absolute;left:0;font-weight:800;color:var(--primary)}
+.logo span{color:var(--dark)}
+.nav-links{display:flex;gap:30px}
+.nav-links a{color:var(--gray)}
+.mobile-toggle{display:none}
 
+/* --- HERO --- */
+.hero{padding:80px 0;text-align:center;background:linear-gradient(135deg,#f0f9ff,#e0f2fe)}
+.hero h1{font-size:3.5rem;margin-bottom:20px}
+.hero p{max-width:700px;margin:0 auto 30px;color:var(--gray)}
+.hero-buttons{display:flex;gap:15px;justify-content:center}
+
+/* --- ENGAGEMENTS --- */
+.engagements{background:var(--dark);color:#fff;padding:80px 0}
+.engagements p{color:#94a3b8}
+.grid-4{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:30px}
+.engagement-card{background:rgba(255,255,255,.1);padding:25px;border-radius:8px}
+
+/* --- TESTIMONIALS --- */
+.testimonials{padding:80px 0}
+.reviews-flex{display:flex;flex-wrap:wrap;justify-content:center;gap:30px}
+.review-card{width:350px;background:#fff;padding:30px;border-radius:12px;border-left:4px solid var(--primary);box-shadow:var(--shadow)}
+
+/* --- PRICING --- */
+.pricing{padding:80px 0;text-align:center}
+.pricing-card{max-width:600px;margin:0 auto;background:#fff;border:2px solid var(--primary);border-radius:16px;padding:40px;box-shadow:0 10px 25px rgba(2,132,199,.15)}
+.intake-container{display:none;background:#f1f5f9;padding:20px;border-radius:8px;margin-top:20px}
+
+/* --- CONTACT --- */
+.contact{padding:80px 0;background:#e2e8f0}
+.contact-form{max-width:600px;margin:0 auto;background:#fff;padding:40px;border-radius:12px;box-shadow:var(--shadow)}
+
+/* --- FOOTER --- */
 footer{background:var(--dark);color:#94a3b8;text-align:center;padding:40px 0}
+
+@media(max-width:768px){
+.hero h1{font-size:2.5rem}
+.nav-links{display:none}
+.hero-buttons{flex-direction:column}
+}
 </style>
 </head>
 
@@ -55,6 +85,10 @@ footer{background:var(--dark);color:#94a3b8;text-align:center;padding:40px 0}
   <div class="container">
     <nav>
       <div class="logo">Success<span>RX</span></div>
+      <ul class="nav-links">
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
     </nav>
   </div>
 </header>
@@ -63,7 +97,7 @@ footer{background:var(--dark);color:#94a3b8;text-align:center;padding:40px 0}
   <div class="container">
     <h1>The Cure for <span style="color:var(--primary)">Churn.</span></h1>
     <p>Clinical training for modern Customer Success teams.</p>
-    <div style="display:flex;gap:15px;justify-content:center">
+    <div class="hero-buttons">
       <a href="#pricing" class="btn btn-primary">Start Training</a>
       <a href="#contact" class="btn btn-outline">Contact Sales</a>
     </div>
@@ -73,8 +107,8 @@ footer{background:var(--dark);color:#94a3b8;text-align:center;padding:40px 0}
 <!-- PRICING / CONSULT -->
 <section id="pricing" class="pricing">
   <div class="container">
-    <div class="card">
-      <h3 style="text-align:center;margin-bottom:20px">Foundations Certification</h3>
+    <div class="pricing-card">
+      <h3>Foundations Certification</h3>
 
       <div style="display:flex;gap:15px;justify-content:center">
         <button onclick="toggleIntake()" class="btn btn-outline">Request 15-Min Consult</button>
@@ -82,26 +116,12 @@ footer{background:var(--dark);color:#94a3b8;text-align:center;padding:40px 0}
       </div>
 
       <div id="intake-form" class="intake-container">
-        <form action="https://docs.google.com/forms/d/e/1FAIpQLSeHEwspGZvVVE2VNz0lma6UYMC5wbqKoovbjPlqJIAAinrodg/formResponse" method="POST" target="_blank">
-
+        <form action="https://docs.google.com/forms/d/e/1FAIpQLSeHEwspGZvVVE2VNz0lma6UYMC5wbqKoovbjPlqJIAAinrodg/formResponse" method="POST">
           <input type="hidden" name="entry.1232198312" value="consult">
-
-          <div class="form-group">
-            <input name="entry.1914984578" placeholder="Name" required>
-          </div>
-
-          <div class="form-group">
-            <input type="email" name="entry.1026388423" placeholder="Email" required>
-          </div>
-
-          <div class="form-group">
-            <input name="entry.2027615643" placeholder="Best time to connect">
-          </div>
-
-          <div class="form-group">
-            <textarea name="entry.2071467027" placeholder="Consult notes"></textarea>
-          </div>
-
+          <div class="form-group"><input name="entry.1914984578" placeholder="Name" required></div>
+          <div class="form-group"><input type="email" name="entry.1026388423" placeholder="Email" required></div>
+          <div class="form-group"><input name="entry.2027615643" placeholder="Best time"></div>
+          <div class="form-group"><textarea name="entry.2071467027" placeholder="Notes"></textarea></div>
           <button class="btn btn-primary" style="width:100%">Request Time</button>
         </form>
       </div>
@@ -112,40 +132,21 @@ footer{background:var(--dark);color:#94a3b8;text-align:center;padding:40px 0}
 <!-- CONTACT SALES -->
 <section id="contact" class="contact">
   <div class="container">
-    <div class="card">
-      <h2 style="text-align:center;margin-bottom:10px">Contact Sales</h2>
-      <p style="text-align:center;color:var(--gray);margin-bottom:25px">
-        Looking to train a team of 5+?
-      </p>
-
-      <form action="https://docs.google.com/forms/d/e/1FAIpQLSeHEwspGZvVVE2VNz0lma6UYMC5wbqKoovbjPlqJIAAinrodg/formResponse" method="POST" target="_blank">
-
+    <div class="contact-form">
+      <h2>Contact Sales</h2>
+      <form action="https://docs.google.com/forms/d/e/1FAIpQLSeHEwspGZvVVE2VNz0lma6UYMC5wbqKoovbjPlqJIAAinrodg/formResponse" method="POST">
         <input type="hidden" name="entry.1232198312" value="sales">
-
-        <div class="form-group">
-          <input name="entry.1914984578" placeholder="Full Name" required>
-        </div>
-
-        <div class="form-group">
-          <input type="email" name="entry.1026388423" placeholder="Work Email" required>
-        </div>
-
+        <div class="form-group"><input name="entry.1914984578" placeholder="Name" required></div>
+        <div class="form-group"><input type="email" name="entry.1026388423" placeholder="Email" required></div>
         <div class="form-group">
           <select name="entry.783258885">
-            <option value="1-10">1–10 Employees</option>
-            <option value="11-50">11–50 Employees</option>
-            <option value="50+">50+ Employees</option>
+            <option value="1-10">1–10</option>
+            <option value="11-50">11–50</option>
+            <option value="50+">50+</option>
           </select>
         </div>
-
-        <div class="form-group">
-          <textarea name="entry.198945468" placeholder="Training focus"></textarea>
-        </div>
-
-        <div class="form-group">
-          <textarea name="entry.2071467027" placeholder="Additional notes"></textarea>
-        </div>
-
+        <div class="form-group"><textarea name="entry.198945468" placeholder="Training focus"></textarea></div>
+        <div class="form-group"><textarea name="entry.2071467027" placeholder="Notes"></textarea></div>
         <button class="btn btn-primary" style="width:100%">Send Message</button>
       </form>
     </div>
