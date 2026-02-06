@@ -75,13 +75,13 @@
         }
         .section-title p {
             color: var(--gray);
-            font-size: 1.1rem;
+            font-size:1.1rem;
         }
 
         /* --- HEADER --- */
         header {
             background: var(--white);
-            border-bottom: 1px solid var(--border);
+            border-bottom:1px solid var(--border);
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -194,7 +194,7 @@
         .reviews-flex {
             display: flex;
             flex-wrap: wrap;
-            justify-content: center; /* Centers the last item if odd */
+            justify-content: center; /* Centers last one if odd */
             gap: 30px;
         }
         .review-card {
@@ -202,7 +202,7 @@
             padding: 30px;
             border-radius: 12px;
             border-left: 4px solid var(--primary);
-            width: 350px;
+            width: 350px; 
             box-shadow: var(--shadow);
             flex-shrink: 0;
         }
@@ -253,7 +253,6 @@
             gap: 10px;
         }
         .check { color: var(--primary); font-weight: bold; }
-        
         .intake-container {
             display: none; 
             background: #f1f5f9;
@@ -263,9 +262,11 @@
             text-align: left;
             border: 1px solid var(--border);
         }
-        .intake-container h4 { margin-bottom: 15px; color: var(--dark); }
         .form-group { margin-bottom: 15px; }
-        .form-group input { width: 100%; padding: 10px; border: 1px solid var(--border); border-radius: 4px; }
+        /* Standardized Input Styling for Google Forms */
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%; padding: 12px; border: 1px solid var(--border); border-radius: 6px; font-family: inherit;
+        }
 
         /* --- CONTACT --- */
         .contact {
@@ -281,9 +282,6 @@
             box-shadow: var(--shadow);
         }
         .form-group label { display:block; margin-bottom:5px; font-size:0.9rem; font-weight:600; }
-        .form-group input, .form-group select, .form-group textarea {
-            width: 100%; padding: 12px; border: 1px solid var(--border); border-radius: 6px; font-family: inherit;
-        }
 
         /* --- FOOTER --- */
         footer {
@@ -296,11 +294,9 @@
 
         /* --- RESPONSIVE --- */
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; }
-            .nav-links { display: none; }
-            .mobile-toggle { display: block; }
+            .hero h1 { font-size: 2.5rem; } .nav-links { display: none; } .mobile-toggle { display: block; }
             .grid-4 { grid-template-columns: 1fr; }
-            .review-card { width: 100%; }
+            .review-card { width: 100%; } 
             .hero-buttons { flex-direction: column; }
         }
     </style>
@@ -327,7 +323,7 @@
     <section class="hero">
         <div class="container">
             <h1>The Cure for <span style="color:var(--primary)">Churn.</span><br> The Prescription for Growth.</h1>
-            <p>Join the clinical approach to Customer Success. We train CS leaders and practitioners to diagnose problems, prescribe solutions, and ensure health of their customer base.</p>
+            <p>Join the clinical approach to Customer Success. We train CS leaders and practitioners to diagnose problems, prescribe solutions, and ensure the health of their customer base.</p>
             <div class="hero-buttons">
                 <a href="#pricing" class="btn btn-primary">Start Foundations Training</a>
                 <a href="#contact" class="btn btn-outline">Contact Sales</a>
@@ -356,7 +352,7 @@
                         <!-- Links to sub-page -->
                         <a href="curriculum.html" class="btn btn-primary">View Full Learning Path</a>
                         
-                        <!-- Updated to Blue Box / White Letters per request -->
+                        <!-- Updated to Blue Box / White Letters -->
                         <a href="#pricing" class="btn btn-primary">Enroll Now</a>
                     </div>
                 </div>
@@ -447,7 +443,7 @@
         </div>
     </section>
 
-    <!-- PRICING (Items Removed) -->
+    <!-- PRICING (GOOGLE FORM CONSULT) -->
     <section id="pricing" class="pricing">
         <div class="container">
             <div class="pricing-card">
@@ -464,21 +460,59 @@
                     <button onclick="toggleIntake()" class="btn btn-outline">Request 15-Min Consult</button>
                     <a href="https://buy.stripe.com/PLACEHOLDER" class="btn btn-accent" target="_blank">Enroll & Pay Now</a>
                 </div>
+                
+                <!-- GOOGLE FORM: CONSULTATION -->
                 <div id="intake-form" class="intake-container">
                     <h4>Schedule Consultation</h4>
                     <p style="font-size: 0.9rem; margin-bottom: 15px; color: #666;">Enter your details to request a time slot.</p>
-                    <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-                        <div class="form-group"><label>Name</label><input type="text" name="name" placeholder="Your Name" required></div>
-                        <div class="form-group"><label>Email</label><input type="email" name="email" placeholder="you@company.com" required></div>
-                        <div class="form-group"><label>Best Time</label><input type="text" name="time" placeholder="e.g., Tuesdays after 2PM"></div>
-                        <button type="submit" class="btn btn-primary" style="width:100%">Request Time</button>
+                    
+                    <form 
+                      action="https://docs.google.com/forms/d/e/1FAIpQLSeHEwspGZvVVE2VNz0lma6UYMC5wbqKoovbjPlqJIAAinrodg/formResponse"
+                      method="POST"
+                      target="_blank">
+                    
+                      <!-- Intent: Consultation -->
+                      <input type="hidden" name="entry.1232198312" value="Consultation">
+                    
+                      <!-- Name -->
+                      <div class="form-group">
+                        <input
+                            type="text"
+                            name="entry.1914984578"
+                            placeholder="Full Name"
+                            required
+                        >
+                      </div>
+                    
+                      <!-- Email -->
+                      <div class="form-group">
+                        <input
+                            type="email"
+                            name="entry.1026388423"
+                            placeholder="Email"
+                            required
+                        >
+                      </div>
+                    
+                      <!-- Best Time to Connect -->
+                      <div class="form-group">
+                        <input
+                            type="text"
+                            name="entry.2027615643"
+                            placeholder="Best time to connect"
+                            required
+                        >
+                      </div>
+                      
+                      <button type="submit" class="btn btn-primary" style="width:100%">Request Time</button>
                     </form>
                 </div>
+
             </div>
         </div>
     </section>
 
-    <!-- CONTACT -->
+    <!-- CONTACT (GOOGLE FORM SALES) -->
     <section id="contact" class="contact">
         <div class="container">
             <div class="section-title">
@@ -486,14 +520,64 @@
                 <p>Looking to train a team of 5+? Let's talk.</p>
             </div>
             <div class="contact-form">
-                <form action="https://formspree.io/f/YOUR_SALES_FORM_ID" method="POST">
-                    <div class="form-group"><label>Name</label><input type="text" name="name" placeholder="John Doe" required></div>
-                    <div class="form-group"><label>Work Email</label><input type="email" name="email" placeholder="john@company.com" required></div>
-                    <div class="form-group"><label>Company Size</label><select name="company_size"><option>1-10 Employees</option><option>11-50 Employees</option><option>50+ Employees</option></select></div>
-                    <div class="form-group"><label>Message</label><textarea rows="4" name="message" placeholder="Tell us about your training needs..." required></textarea></div>
-                    <button type="submit" class="btn btn-primary" style="width:100%">Send Message</button>
-                    <p style="margin-top:15px; font-size:0.9rem; color:var(--gray); text-align:center;">For general inquiries and waiting list registration, <a href="contact.html" style="color:var(--primary);">click here</a>.</p>
+                <form 
+                  action="https://docs.google.com/forms/d/e/1FAIpQLSeHEwspGZvVVE2VNz0lma6UYMC5wbqKoovbjPlqJIAAinrodg/formResponse"
+                  method="POST"
+                  target="_blank">
+                
+                  <!-- Intent: Sales -->
+                  <input type="hidden" name="entry.1232198312" value="Sales">
+                
+                  <!-- Full Name -->
+                  <div class="form-group">
+                    <label>Name</label>
+                    <input
+                        type="text"
+                        name="entry.1914984578"
+                        placeholder="John Doe"
+                        required
+                    >
+                  </div>
+                
+                  <!-- Email -->
+                  <div class="form-group">
+                    <label>Email</label>
+                    <input
+                        type="email"
+                        name="entry.1026388423"
+                        placeholder="john@company.com"
+                        required
+                    >
+                  </div>
+                
+                  <!-- Company Size -->
+                  <div class="form-group">
+                    <label>Company Size</label>
+                    <select name="entry.783258885" required>
+                        <option value="" disabled selected>Select company size…</option>
+                        <option value="1-10">1–10</option>
+                        <option value="11-50">11–50</option>
+                        <option value="50+">50+</option>
+                    </select>
+                  </div>
+                
+                  <!-- Training Focus -->
+                  <div class="form-group">
+                    <label>Message</label>
+                    <textarea
+                        name="entry.198945468"
+                        placeholder="Tell us what you’re looking for (CS Maturity, AI, Platforms, etc.)"
+                        rows="3"
+                        required
+                    ></textarea>
+                  </div>
+                  
+                  <button type="submit" class="btn btn-primary" style="width:100%">Send Message</button>
                 </form>
+                
+                <p style="margin-top:15px; font-size:0.9rem; color:var(--gray); text-align:center;">
+                    For general inquiries and waiting list registration, <a href="contact.html" style="color:var(--primary);">click here</a>.
+                </p>
             </div>
         </div>
     </section>
@@ -511,29 +595,14 @@
         // Toggle Mobile Menu
         function toggleMenu() {
             const navLinks = document.querySelector('.nav-links');
-            if (navLinks.style.display === 'flex') {
-                navLinks.style.display = 'none';
-            } else {
-                navLinks.style.display = 'flex';
-                navLinks.style.flexDirection = 'column';
-                navLinks.style.position = 'absolute';
-                navLinks.style.top = '60px';
-                navLinks.style.right = '0';
-                navLinks.style.background = 'white';
-                navLinks.style.width = '100%';
-                navLinks.style.padding = '20px';
-                navLinks.style.borderBottom = '1px solid #ddd';
-            }
+            if (navLinks.style.display === 'flex') { navLinks.style.display = 'none'; } 
+            else { navLinks.style.display = 'flex'; navLinks.style.flexDirection = 'column'; navLinks.style.position = 'absolute'; navLinks.style.top = '60px'; navLinks.style.right = '0'; navLinks.style.background = 'white'; navLinks.style.width = '100%'; navLinks.style.padding = '20px'; navLinks.style.borderBottom = '1px solid #ddd'; }
         }
 
         // Toggle Intake Form Visibility
         function toggleIntake() {
             const form = document.getElementById('intake-form');
-            if (form.style.display === 'block') {
-                form.style.display = 'none';
-            } else {
-                form.style.display = 'block';
-            }
+            if (form.style.display === 'block') { form.style.display = 'none'; } else { form.style.display = 'block'; }
         }
     </script>
 </body>
